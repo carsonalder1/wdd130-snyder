@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'Audiowide';
+    src: url(fonts/Audiowide/Audiowide-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Old Standard TT';
+    src: url(fonts/Old_Standard_TT/OldStandardTT-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'Old Standard TT', serif;
+}
+
+h1, h2, h3, nav, header {
+    font-family: 'Audiowide', cursive;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
