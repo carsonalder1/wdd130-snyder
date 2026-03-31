@@ -1,0 +1,198 @@
+@font-face {
+    font-family: 'Audiowide';
+    src: url(fonts/Audiowide/Audiowide-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Old Standard TT';
+    src: url(fonts/Old_Standard_TT/OldStandardTT-Regular.ttf);
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --persian-blue:    #1F30C9;
+    --ghost-white:     #F4F2F9;
+    --indigo:          #510CA1;
+    --tangerine:       #FE934D;
+    --vivid-orchid:    #D423CC;
+    --text-dark:       #1a1a2e;
+    --card-bg:         #ffffff;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Old Standard TT', serif;
+    background-color: var(--ghost-white);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3, nav, header {
+    font-family: 'Audiowide', cursive;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 40px;
+    background-color: var(--persian-blue);
+    border-bottom: 4px solid var(--tangerine);
+}
+
+header img {
+    height: 100px;
+    width: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 8px 18px;
+    color: var(--ghost-white);
+    text-decoration: none;
+    font-family: 'Audiowide', cursive;
+    font-size: 0.85rem;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+nav ul li a:hover {
+    color: var(--tangerine);
+    border-bottom-color: var(--tangerine);
+}
+
+.contact-btn {
+    display: block;
+    padding: 10px 18px;
+    background-color: transparent;
+    color: var(--ghost-white);
+    border: 2px solid var(--tangerine);
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: 'Audiowide', cursive;
+    font-size: 0.8rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.contact-btn:hover {
+    background-color: var(--tangerine);
+    color: var(--text-dark);
+}
+
+.albums-main {
+    flex: 1;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.albums-main h1 {
+    font-size: 1.8rem;
+    color: var(--indigo);
+    margin-bottom: 30px;
+    border-bottom: 3px solid var(--tangerine);
+    padding-bottom: 10px;
+}
+
+.album-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.album-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background-color: var(--card-bg);
+    border: 2px solid #ddd;
+    border-left: 5px solid var(--persian-blue);
+    border-radius: 6px;
+    padding: 15px;
+    transition: border-left-color 0.2s, box-shadow 0.2s;
+}
+
+.album-card:hover {
+    border-left-color: var(--vivid-orchid);
+    box-shadow: 0 4px 12px rgba(31, 48, 201, 0.15);
+}
+
+.album-card img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+    background-color: #ddd;
+}
+
+.album-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+}
+
+.album-info h2 {
+    font-size: 1.1rem;
+    color: var(--persian-blue);
+}
+
+.album-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #444;
+    flex: 1;
+}
+
+.album-meta {
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: auto;
+}
+
+.album-meta .album-year {
+    color: var(--indigo);
+    font-weight: bold;
+}
+
+.album-meta .album-artist {
+    color: var(--tangerine);
+    font-weight: bold;
+}
+
+footer {
+    background-color: var(--persian-blue);
+    color: var(--ghost-white);
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 0.85rem;
+    border-top: 4px solid var(--tangerine);
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
