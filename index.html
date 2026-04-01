@@ -8,7 +8,7 @@
 </head>
 <body>
 <header>
-    <img src="images/musiclogo.png" alt="Music Logo" style="height: 100px; width: auto;">
+    <img src="images/musiclogo.png" alt="Music Logo">
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -16,23 +16,27 @@
             <li><a href="albums.html">Albums</a></li>
         </ul>
     </nav>
-    <a href="#">Contact Me</a>
+    <a href="#" class="contact-btn">Contact Me</a>
 </header>
 <main>
     <section class="hero">
         <h1>Welcome to My Music Portal!</h1>
         <p>Hi! I'm Jackson, and I have this website dedicated to the music that I listen to.</p>
-        <div class="albums-card">
-            <div class="photo-grid">
-                <img src="#" alt="Albums Image (multiple album images will be shown here in the future)" style="height: 50px; width: auto;">
-                <p>Albums</p> 
-            </div>
-        </div>
-        <div class="artists-card">
-            <div class="photo-grid">
-                <img src="#" alt="Artists Image (multiple artist images will be shown here in the future)" style="height: 50px; width: auto;">
-                <p>Artists</p>
-            </div>
+        <div class="card-container">
+            <a href="albums.html" class="portal-card">
+                <div class="albums-card">
+                    <div class="photo-grid" id="album-grid">
+                    </div>
+                    <p>Albums</p>
+                </div>
+            </a>
+            <a href="artists.html" class="portal-card">
+                <div class="artists-card">
+                    <div class="photo-grid" id="artist-grid">
+                    </div>
+                    <p>Artists</p>
+                </div>
+            </a>
         </div>
     </section>
 </main>
