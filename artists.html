@@ -1,30 +1,455 @@
-<!--Junior Dev 1 will work on this one-->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jackson's Music Portal</title>
-    <link rel="stylesheet" href="styles/style.css">
-</head>
-<body>
-<header>
-    <img src="images/musiclogo.png" alt="Music Logo" style="height: 100px; width: auto;">
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="artists.html">Artists</a></li>
-            <li><a href="albums.html">Albums</a></li>
-        </ul>
-    </nav>
-    <a href="#">Contact Me</a>
-</header>
-<main>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde qui ut a rerum veniam esse cupiditate debitis, neque officiis consequatur architecto aliquam magnam quia accusamus quis deleniti eaque eum odio.
-</main>
-<footer>
-    <p>&copy; 2026 Jackson's Music Portal. All rights reserved.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jackson's Music Portal – Artists</title>
+    <link rel="stylesheet" href="styles/albums.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap");
 
-</footer>
-</body>
+      .artists-main {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 3rem 2rem 5rem;
+      }
+
+      .artists-main h1 {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: clamp(2rem, 5vw, 3.2rem);
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.02em;
+      }
+
+      .artists-subtitle {
+        font-family: "DM Sans", sans-serif;
+        font-size: 1.05rem;
+        color: #666;
+        margin-bottom: 3rem;
+        max-width: 680px;
+        line-height: 1.6;
+      }
+
+      /* ---------- List ---------- */
+      .artist-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      /* ---------- Row Card ---------- */
+      .artist-card {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        background: #fff;
+        border-radius: 16px;
+        padding: 1.5rem 2rem;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+        border-left: 5px solid var(--accent, #999);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .artist-card:hover {
+        transform: translateX(6px);
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+      }
+
+      /* ---------- Circle Image ---------- */
+      .artist-img-wrap {
+        flex-shrink: 0;
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid var(--accent, #ccc);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+      }
+
+      .artist-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        transition: transform 0.4s ease;
+      }
+
+      .artist-card:hover .artist-img-wrap img {
+        transform: scale(1.08);
+      }
+
+      /* ---------- Text Body ---------- */
+      .artist-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .artist-body h2 {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin: 0;
+        color: #111;
+        line-height: 1.2;
+      }
+
+      .genre-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+      }
+
+      .tag {
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        padding: 0.18rem 0.55rem;
+        border-radius: 999px;
+        background: color-mix(in srgb, var(--accent, #888) 14%, white);
+        color: color-mix(in srgb, var(--accent, #555) 80%, #222);
+        border: 1px solid
+          color-mix(in srgb, var(--accent, #888) 28%, transparent);
+      }
+
+      .artist-body p {
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: #444;
+        margin: 0;
+      }
+
+      .artist-albums {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.4rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid #f0f0f0;
+      }
+
+      .artist-albums .label {
+        font-family: "DM Sans", sans-serif;
+        color: #888;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-size: 0.68rem;
+        flex-basis: 100%;
+      }
+
+      .artist-albums a {
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.78rem;
+        color: var(--accent, #555);
+        text-decoration: none;
+        font-weight: 500;
+        background: color-mix(in srgb, var(--accent, #888) 10%, white);
+        border: 1px solid
+          color-mix(in srgb, var(--accent, #888) 22%, transparent);
+        padding: 0.18rem 0.6rem;
+        border-radius: 6px;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+
+      .artist-albums a:hover {
+        background: var(--accent, #888);
+        color: #fff;
+      }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 600px) {
+        .artist-card {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1.25rem;
+          padding: 1.25rem;
+        }
+        .artists-main {
+          padding: 2rem 1rem 4rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img
+        src="images/musiclogo.png"
+        alt="Music Logo"
+        style="height: 100px; width: auto"
+      />
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="artists.html">Artists</a></li>
+          <li><a href="albums.html">Albums</a></li>
+        </ul>
+      </nav>
+      <a href="#" class="contact-btn">Contact Me</a>
+    </header>
+
+    <main class="artists-main">
+      <h1>My Favourite Artists</h1>
+      <p class="artists-subtitle">
+        The artists that have shaped my musical world — from mellow folk to
+        hard-hitting rock to electronic soundscapes.
+      </p>
+
+      <div class="artist-list">
+        <div class="artist-card" style="--accent: #e8c547">
+          <div class="artist-img-wrap">
+            <img src="images/albums/clancy.jpg" alt="Twenty One Pilots" />
+          </div>
+          <div class="artist-body">
+            <h2>Twenty One Pilots</h2>
+            <div class="genre-tags">
+              <span class="tag">Alternative</span>
+              <span class="tag">Indie Rock</span>
+              <span class="tag">Synth-Pop</span>
+            </div>
+            <p>
+              Twenty One Pilots is arguably my all-time favorite artist. Tyler
+              Joseph and Josh Dun have spent over a decade building a rich
+              narrative universe across their albums — each chapter deepening a
+              story that has kept me hooked through some of the biggest moments
+              of my life, including my mission to Brazil. Their ability to blend
+              emotional lyricism with wildly varied production styles makes
+              every album feel like its own world.
+            </p>
+            <div class="artist-albums">
+              <span class="label">Featured Albums:</span>
+              <a href="albums.html">Clancy (2024)</a>
+              <a href="albums.html">Breach (2025)</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="artist-card" style="--accent: #e05c3a">
+          <div class="artist-img-wrap">
+            <img src="images/albums/night_visions.jpg" alt="Imagine Dragons" />
+          </div>
+          <div class="artist-body">
+            <h2>Imagine Dragons</h2>
+            <div class="genre-tags">
+              <span class="tag">Alternative Rock</span>
+              <span class="tag">Indie Pop</span>
+              <span class="tag">Arena Rock</span>
+            </div>
+            <p>
+              Imagine Dragons were the gateway. Night Visions was the first
+              album I ever truly fell in love with back in 2014, and it was
+              Radioactive that cracked open my understanding of what music could
+              feel like. Their anthemic, big-room alternative rock is the sound
+              of my childhood — songs like Round and Round, Nothing Left to Say,
+              and Bleeding Out still hit the same way they did when I was a kid.
+            </p>
+            <div class="artist-albums">
+              <span class="label">Featured Albums:</span>
+              <a href="albums.html">Night Visions (2012)</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="artist-card" style="--accent: #7b8cde">
+          <div class="artist-img-wrap">
+            <img src="images/albums/take_me_to_eden.jpg" alt="Sleep Token" />
+          </div>
+          <div class="artist-body">
+            <h2>Sleep Token</h2>
+            <div class="genre-tags">
+              <span class="tag">Progressive Metal</span>
+              <span class="tag">Art Rock</span>
+              <span class="tag">Alternative Metal</span>
+            </div>
+            <p>
+              Sleep Token are something truly special. Vessel's vocals and II's
+              drumming — especially that legendary live drum solo in The
+              Summoning — make them one of the most captivating acts I've ever
+              heard. Take Me Back to Eden is a full piece of art from the
+              crushing opener Chokehold all the way to the full-circle ending of
+              Euclid. Heavy and hauntingly beautiful all at once.
+            </p>
+            <div class="artist-albums">
+              <span class="label">Featured Albums:</span>
+              <a href="albums.html">Take Me Back to Eden (2023)</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="artist-card" style="--accent: #4ec97b">
+          <div class="artist-img-wrap">
+            <img src="images/albums/pep_talks.jpg" alt="Judah and the Lion" />
+          </div>
+          <div class="artist-body">
+            <h2>Judah and the Lion</h2>
+            <div class="genre-tags">
+              <span class="tag">Folk-Pop</span>
+              <span class="tag">Indie Rock</span>
+              <span class="tag">Americana</span>
+            </div>
+            <p>
+              Judah and the Lion have a rare talent: making songs that are
+              sonically fun and energetic even when the lyrics are wrestling
+              with harder, more personal themes. Pep Talks is full of
+              quarter-life-crisis anthems wrapped in groovy, upbeat production —
+              perfect for a long drive, a cleaning session, or just needing to
+              feel like you're moving forward.
+            </p>
+            <div class="artist-albums">
+              <span class="label">Featured Albums:</span>
+              <a href="albums.html">Pep Talks (2019)</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="artist-card" style="--accent: #c45a8a">
+          <div class="artist-img-wrap">
+            <img src="images/albums/dark_sun.jpg" alt="Dayseeker" />
+          </div>
+          <div class="artist-body">
+            <h2>Dayseeker</h2>
+            <div class="genre-tags">
+              <span class="tag">Post-Hardcore</span>
+              <span class="tag">Alternative Metal</span>
+              <span class="tag">Hard Rock</span>
+            </div>
+            <p>
+              Dayseeker came into my life through a close friend who knows my
+              taste well — "Hey Sparky, I think you'll really like this album" —
+              and he was completely right. Dark Sun hits exactly the kind of
+              alternative/rock I love most. The moments where they drop into
+              half time and everything gets heavy are genuinely spine-tingling.
+            </p>
+            <div class="artist-albums">
+              <span class="label">Featured Albums:</span>
+              <a href="albums.html">Dark Sun (2022)</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="artist-card" style="--accent: #a0c878">
+          <div class="artist-img-wrap">
+            <img
+              src="images/albums/the_weatherman.jpg"
+              alt="Gregory Alan Isakov"
+            />
+          </div>
+          <div class="artist-body">
+            <h2>Gregory Alan Isakov</h2>
+            <div class="genre-tags">
+              <span class="tag">Folk</span>
+              <span class="tag">Singer-Songwriter</span>
+              <span class="tag">Acoustic</span>
+            </div>
+            <p>
+              For mellow, peaceful listening there's nobody quite like Gregory
+              Alan Isakov. The Weatherman is the album I put on while skiing —
+              the gentle sway of his songs matching the rhythm of carving down a
+              slope. His use of 3/4 and 6/8 gives his folk songs a waltz-like
+              quality I find deeply satisfying. He's who I reach for when I want
+              to be fully present and at peace.
+            </p>
+            <div class="artist-albums">
+              <span class="label">Featured Albums:</span>
+              <a href="albums.html">The Weatherman (2013)</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="artist-card" style="--accent: #5bb8c9">
+          <div class="artist-img-wrap">
+            <img src="images/albums/moments.jpg" alt="Hollow Coves" />
+          </div>
+          <div class="artist-body">
+            <h2>Hollow Coves</h2>
+            <div class="genre-tags">
+              <span class="tag">Indie Folk</span>
+              <span class="tag">Acoustic Pop</span>
+              <span class="tag">Ambient Folk</span>
+            </div>
+            <p>
+              Hollow Coves are one of the very few artists where I genuinely
+              love almost every single song in their catalog. Moments captures
+              the feeling of a summer vacation with nothing to worry about —
+              warm, easy, and full of light. A slightly more upbeat take on
+              peaceful music, like a sunny day with nowhere to be.
+            </p>
+            <div class="artist-albums">
+              <span class="label">Featured Albums:</span>
+              <a href="albums.html">Moments (2020)</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="artist-card" style="--accent: #b07fe8">
+          <div class="artist-img-wrap">
+            <img
+              src="images/albums/when_the_quiet_comes.jpg"
+              alt="Leaving Laurel"
+            />
+          </div>
+          <div class="artist-body">
+            <h2>Leaving Laurel</h2>
+            <div class="genre-tags">
+              <span class="tag">Electronic</span>
+              <span class="tag">Ambient</span>
+              <span class="tag">Instrumental</span>
+            </div>
+            <p>
+              Leaving Laurel makes what I can only describe as "imbounious"
+              music — a word my friends and I invented that means it can be
+              whatever you need it to be. No lyrics, just cool sounds and pure
+              atmosphere. When The Quiet Comes meets me in any mood — happy,
+              sad, mad, or zoned out — and it always fits perfectly.
+            </p>
+            <div class="artist-albums">
+              <span class="label">Featured Albums:</span>
+              <a href="albums.html">When The Quiet Comes (2023)</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="artist-card" style="--accent: #e8894e">
+          <div class="artist-img-wrap">
+            <img src="images/albums/forever_now.jpg" alt="Sultan + Shepard" />
+          </div>
+          <div class="artist-body">
+            <h2>Sultan + Shepard</h2>
+            <div class="genre-tags">
+              <span class="tag">Electronic</span>
+              <span class="tag">House</span>
+              <span class="tag">Dance</span>
+            </div>
+            <p>
+              Sultan + Shepard represent the more energetic side of my
+              electronic taste — melodic and driving, but still carrying real
+              beauty. Forever, Now even has one of the rare electronic songs I
+              love in 3/4, giving it percussive variety most electronic music
+              lacks. This album is forever tied to my last summer before my
+              mission, driving around the Salt Lake valley doing drywall with
+              friends.
+            </p>
+            <div class="artist-albums">
+              <span class="label">Featured Albums:</span>
+              <a href="albums.html">Forever, Now (2022)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Jackson's Music Portal. All rights reserved.</p>
+    </footer>
+  </body>
 </html>
